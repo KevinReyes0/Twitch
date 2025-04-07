@@ -10,7 +10,7 @@ export const login = async (data) => {
     } catch (e) {
         return{
             error: true,
-            error: e.error
+            e
             
         }
     }

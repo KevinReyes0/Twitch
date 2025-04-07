@@ -20,7 +20,7 @@ export const Input = ({
     return (
         <>
             <div className="auth form label">
-                <spam>{label}</spam>
+                <span>{label}</span>
             </div>
             <div>
                 {textArea ? (
@@ -40,9 +40,9 @@ export const Input = ({
                         onBlur={handlerInputBlur}
                     />
                 )}
-                <spam className = "auth-from-validation-message">
+                <span className = "auth-from-validation-message">
                     {showErrorMessage && validationMessage}
-                </spam>
+                </span>
             </div>
         </>
     )
