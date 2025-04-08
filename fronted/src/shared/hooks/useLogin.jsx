@@ -26,6 +26,8 @@ export const useLogin = () => {
         const { userDetails } = response.data
         localStorage.setItem('user', JSON.stringify(userDetails));
 
+        toast.success('Sesion inciada correctamente')
+
         navigate('/')
     }
     return{
