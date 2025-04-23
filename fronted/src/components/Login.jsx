@@ -2,18 +2,18 @@ import { useState } from "react";
 import { Logo } from "./Logo";
 import { Input } from "./Input";
 import {
-    validateUsernameMessage,
+    emailValidationMessage,
     validateEmail,
     validatePasswordMessage,
     validatePassword
 } from "../shared/validators";
-import { useLogin } from "../shared/hooks";
-import { formToJSON } from "axios";
+import { useLogin } from "../shared/hooks"
 
-export const Login = ({ switchAuthHandler}) => {
-    const { login, isLoading } = useLogin();
+export const Login = ({ switchAuthHandler }) => {
+    
+    const { login, isLoading } = useLogin()
 
-    const [ fromState, setFormState ] = useState({
+    const [formState, setFormState] = useState({
         email: {
             value: '',
             isValid: false,
@@ -33,12 +33,12 @@ export const Login = ({ switchAuthHandler}) => {
                 ...prevState[field],
                 value
             }
-        }));
+        }))
     }
 
     const handleInputValidationOnBlur = (value, field) => {
         let isValid = false;
-        switch(field){
+        switch(field) {
             case 'email':
                 isValid = validateEmail(value);
                 break;
@@ -48,7 +48,7 @@ export const Login = ({ switchAuthHandler}) => {
             default:
                 break;
         }
-        setFormState((prevState) => ({
+        setFormState((prevState) =>({
             ...prevState,
             [field]: {
                 ...prevState[field],
@@ -60,41 +60,41 @@ export const Login = ({ switchAuthHandler}) => {
 
     const handleLogin = (event) => {
         event.preventDefault()
-        login(fromState.email.value, fromState.password.value)
+        login(formState.email.value, formState.password.value)
     }
 
-    const isSubmitButtonDisabled = isLoading || !fromState.email.isValid || !fromState.password.isValid
+    const isSubmitButtonDisabled = isLoading || !formState.email.isValid || !formState.password.isValid;
 
     return (
         <div className="login-container">
-            <Logo text={'Login fcBarcelona'}/>
+            <Logo text={'Login Kinal Cast'}/>
             <form className="auth-form">
                 <Input
                     field='email'
                     label='Email'
-                    value={fromState.email.value}
+                    value={formState.email.value}
                     onChangeHandler={handleInputValueChange}
                     type='text'
                     onBlurHandler={handleInputValidationOnBlur}
-                    showErrorMessage={fromState.email.showError}
-                    validationMessage={validateUsernameMessage}
+                    showErrorMessage={formState.email.showError}
+                    validationMessage={emailValidationMessage}
                 />
                 <Input
                     field='password'
                     label='Password'
-                    value={fromState.password.value}
+                    value={formState.password.value}
                     onChangeHandler={handleInputValueChange}
                     type='password'
                     onBlurHandler={handleInputValidationOnBlur}
-                    showErrorMessage={fromState.password.showError}
+                    showErrorMessage={formState.password.showError}
                     validationMessage={validatePasswordMessage}
                 />
                 <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
                     Log in
                 </button>
             </form>
-            <span onClick={switchAuthHandler} className="auth=form-switch-label">
-                Don't have an account? sign up
+            <span onClick={switchAuthHandler} className="auth-form-swith-label">
+                Don't have an account? Sign up
             </span>
         </div>
     )

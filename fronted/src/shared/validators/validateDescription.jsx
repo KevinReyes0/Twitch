@@ -1,5 +1,5 @@
-export const validaterDescription = (description) => {
+export const validateDescription = (description) => {
     return description.length >= 10 && description.length <= 200;
 }
 
-export const descriptionVlidateMessage = 'La descripcion debe tener entre 10 y 200 caracteres.';
+export const descriptionValidateMessage = 'La descripcion debe tener entre 10 y 200 caracteres.';
